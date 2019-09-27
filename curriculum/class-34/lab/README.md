@@ -1,4 +1,4 @@
-401 JS --  Lab 31 - Redux
+401 JS --  Lab 34: - Redux
 ===
   
 ## Requirements  
