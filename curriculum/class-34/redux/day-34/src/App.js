@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import BookForm from "./components/BookForm/BookForm";
 
 class App extends React.Component {
   constructor(props) {
@@ -19,12 +20,18 @@ class App extends React.Component {
     this.props.createNewCategory(this.state.category);
   };
 
+  // componentDidMount() {
+  // }
+
   render() {
     return (
       <>
         {
           this.props.categories.map(category =>
-            <li>{category}</li> )
+            <div>
+              {category.name}
+              <BookForm category={category}/>
+            </div> )
         }
 
         <form onSubmit={this.handleSubmit}>
@@ -54,7 +61,10 @@ const mapDispatchToProps = (dispatch) => {
     createNewCategory : (categoryName) => {
       dispatch({
         type: 'CATEGORY_CREATE',
-        payload: categoryName,
+        payload: {
+          name: categoryName,
+          id: Math.random(),
+        },
       });
     },
   };
