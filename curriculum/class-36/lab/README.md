@@ -1,4 +1,4 @@
-# LAB - Application State
+# LAB -  Full Stack Application Configuration
 
 ## Before you begin
 Refer to *Getting Started*  in the [lab submission instructions](../../../reference/submission-instructions/labs/README.md) for complete setup, configuration, deployment, and submission instructions.
@@ -21,50 +21,36 @@ Once you have a good visual and mental model of how the application works, break
 
 ## Getting Started
 
-### Connect to a store
-For this assignment, you're going to take an existing component which puts out some random numbers when a div is clicked, and refactor it to use a Redux store instead of local state.
+### Initialize your API
 
-* You've been provided starter code to work with - `app-state-connect`
-* Connect `index.js` to the redux store and pass it down to the `App` component
-* Remove the state declaration in the constructor
-  * Do you still need a constructor?
-* Bring in the actions to `app.js`
-* Map state and dispatch to props in `app.js`
-  * use `stuff` as your state keyword.
-* Export the connected `App` component
-* Render `this.props.stuff.foo` instead of `this.state.foo`
-* Remove the `handleChange()` method in `app.js`
-* Re-Implement the click event on the `<div>` using the action method that you mapped earlier
+Create an Initialized repository for the API that you want to work out out for the remainder of class. This should follow the guidelines of your project from your proposal.
 
+- This should be an Express application running in a Node environment.
+- Define any models / routes / and middleware that your API needs to function properly.
+  - Both Auth and CRUD should be represented.
+  - These don't need to be exhaustive, just make sure your have MVP functionality outlined in your API.
+- Document any environment variables that your API needs to run locally.
+  - Are there any API keys that need to be used, does mongo and express need any configuration variables?
+- Have at least 1 route that sends a response on '/', can be an error or self made message
 
-### Create a new reducer
-In this assignment, we have a working app that uses Redux for it's state management. Now, it's time to extend it and add a new component with it's own reducer/actions. The twist is that this new reducer will also be able to respond to actions that the other component fires.
+### Initialize your React App
 
-* You've been provided starter code to work with - `app-state-reducers`
-* Create a new numbers reducer in the store: `numbers-reducer.js`
-* Create a new numbers action in the store: `numbers-actions.js`
-* Create a new action creator for the "RESET" action
-* Connect to the reducer in the store's `index.js` file and export it's state as "numbers"
-* The initial state should be a simple object with one key: currentNumber, set to any number you would like
-* In the reducer, create a listener (in the `case`) for both the `CHANGE` and `RESET` actions
-* On `CHANGE`, change the number to a random number
-* On `RESET`, reset the state back to the `initialState`
-* Create a new `Numbers` component that renders a `<div>` with the content "Hello"
-* Import this into your `<App>` and render it below the content already being rendered
-  * You should see your app's output along with "Hello" at this point
-* Import your numbers actions
-* Connect the Numbers component to the store and map the numbers actions and state to Props.
-* Render `this.props.numbers.currentNumber`
+Create an initialized repository for your React application that you will be adding to for the remainder of class.  This should be setup to function as per the guidelines from your proposal.
 
+- This should be a `create-react-app` powered by `react-scripts`.
+- Must be able to run on `npm start`.
+- Should render something when running in development mode and browser pointed to the proper origin on '/'.
+- Properly document your application in the README.
+
+## Submission
+
+Submit a PR for both repositories.
 
 ###### Testing
 * Tests are not required for this lab
 
 ###### Stretch Goals:
-* Do all of this again, but from scratch
-* Add a third reducer and subscribe to both bits of state
-* Wire up Reducer unit tests and a fake store
+* Deploy your applications on Heroku.
 
-
-### Assignemnt Submission Instructions
+### Assignment Submission Instructions
 Refer to the the [lab submission instructions](../../../reference/submission-instructions/labs/README.md) for the complete lab submission process and expectations
