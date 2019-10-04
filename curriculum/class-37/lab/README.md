@@ -1,4 +1,4 @@
-# LAB - Dynamic Forms
+# LAB - Full Stack Auth
 
 ## Before you begin
 Refer to *Getting Started*  in the [lab submission instructions](../../../reference/submission-instructions/labs/README.md) for complete setup, configuration, deployment, and submission instructions.
@@ -21,53 +21,57 @@ Once you have a good visual and mental model of how the application works, break
 
 ## Getting Started
 
-Starter code has been provided for you in the `/lab/starter-code` folder. 
+You should have two fully configured projects as part of your Full Stack Application.  **From this point forward you should have fully configured project directories.** Your PRs now must include:
 
-Open [Code Sandbox](http://codesandbox.io) and Create a new application. When prompted, choose "From GitHub" and then paste in the URL to today's starter code folder from your fork of the class repository.
-
-You will be submitting the URL to this working sandbox as part of your assignment.
-
-**Fire up your API Server!**
-
-  * Get your latest and greatest API server from the your earlier labs and get it running along with a MongoDB instance. (Recommended)
-  * Or ... use the supplied server in this lab folder
-  * Or ... simply connect to the deployed public API server
-    * [https://api-js401.herokuapp.com/api/v1/](https://api-js401.herokuapp.com/api/v1/)...
-* Once you have it up and running, fetch the schema for any model that you have. We will be using this to build our forms. Copy the schema response that you get from the server and paste it into a file called "schema.json", we'll be using that later.
-  * *The public API supports "players" and "teams" models for all operations*
+- `.travis.yml`
+  - This must trigger a build on travis, and that build must be passing.
+- `.eslintrc.json`
+  - This should be used when you run `npm run lint` and should be passing when you submit your PR. 
+- `.gitignore`
+  - Sensitive files and runtime build files must be ignored from your repo.
+- `README.md`
+  - You should have a working UML for your app. One for your API, one for your front end client.
+  - You must have a url to your deployed application.
+- `JSDocs` / `styleguidist`
+  - Your applications must be documented using the proper documentation methodology.
 
 ## Assignments
-### Implement the RESTful Reducers
+### Implement Auth on your API
 
-* Use a static .json file to bring in the players schema (you can simply import it)
-* Implement all of the restful methods in the Redux Store for the player schema
-  * GET - Retrieve one item
-  * POST - Create New Item
-  * PUT - Replace an item
-  * PATCH - Update an item
-  * DELETE - Remove an item
-* Display a list of every element in the store, updating the list with every action taken on individual items.
+---
 
-### Create a generic `<Record/>` component
-In the first phase, you created a form that can edit a single model. In this phase, you will be genericizing that component.
+Your API needs to have functionality for Authenticating and Authorizing requests, The following will be required on your API server:
 
-* Rename your editor component to `<Record />`
-* It should dynamically load the correct schema json file based on a prop on the component given by the container component.
-* Based on the schema
-  * Draw the correct form
-  * Connect to the right part of the store.
-  * Ensure that the record list is from the right part of state
-  * Ensure that your REST actions are using the right part of state
+- A User model
+  - Your API needs a User model to handle all Auth related data.
+  - Your model must generate a Token.
+
+- Basic Auth
+  - You must have a way for users to request a token using User credentials.
+  - Either using a form for sending hashed usernames and passwords or using an Oauth service.  Both of which lead to fetching of a User object, and token generation.
+
+- Bearer Auth
+  - You must have a way to Authenticate tokens passed in an Authorization header.
 
 
-### Turn it on!
-* Instead of importing .json files, connect the `<Record />` component to an API server to fetch the actual Schema from the API
-* This should be optional. Use a flag of some kind to tell your component to read from a local .json file or connect to a server.
-* Use a variable to identify the API server so that your application is deployable.
+### Implement Auth in your React Application
+
+---
+
+Your React App must have A way to authenticate users and handle tokens.  The following features are required for your front end Interfaces:
+
+- Authentication form
+  - You should have a form that either lets users submit basic auth credentials or an Oauth form for submitting Oauth credentials to an Auth service.
+
+- Authentication Data
+  - Your Interface should save your token somewhere.
+  - Your Interface should change some behavior depending on if a token is present.
 
 ###### Testing
-* Test the reducers to make sure that each action is properly manipulating state
-* Test the form behavior to ensure that added items are showing in the list, updates are showing real time changes, etc.
+* Tests for Auth routes should be implemented.
+  * Signup and Signin routes should have tests.
+* Tests for Auth components must be implemented.
+  * Components should render.
 
-### Assignemnt Submission Instructions
+### Assignment Submission Instructions
 Refer to the the [lab submission instructions](../../../reference/submission-instructions/labs/README.md) for the complete lab submission process and expectations
