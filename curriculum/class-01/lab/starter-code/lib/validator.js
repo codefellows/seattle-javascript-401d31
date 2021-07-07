@@ -11,38 +11,53 @@ let validator = module.exports = {};
  * @returns {boolean}
  */
 
-
-// Ideas for rules : Positive values / Negative values / odd values / even values /
-// specific values / bigger than five /
-
-// if you need to setup more complex rules, remember that rules can be an object too
 validator.isValid = (input, rules) => {
-  // return true;
-  if(rules === 'object') {
-    // Vinicio - how do I check if the type of the input is an object
+  switch (rules) {
+  case 'string':
+    return validator.isString(input);
+    break;
+  case 'arr':
+    return validator.isEvenArr(input);
+    break;
+  case  'positive':
+    return validator.isPosNum(input);
+    break;
+  case 'object':
+    return validator.isObj(input);
+    break;
+  case 'hair':
+    return validator.objHas(input);
+    break;
+  default:
+    return undefined;
   }
-
-  if(rules === 'object') {
-    // I'm checking if the value is less than zero, because the user wants to
-    // check if the value is negative
-    return input < 0;
-  }
-
-  if(rules === 'one') {
-    // I'm checking if the value is less than zero, because the user wants to
-    // check if the value is negative
-    return input === 1;
-  }
-
+  
 };
 
-/**
- * Is this a string?
- * @param input
- * @returns {boolean}
- */
+
 validator.isString = (input) => {
   return typeof input === 'string';
 };
+
+validator.isEvenArr = (input) => input.filter((number) =>  0 === number % 2);
+
+
+validator.isPosNum = (input) =>{
+  return input > 0;
+};
+
+validator.isObj = (input) => {
+  return typeof  input === 'object';
+};
+
+
+validator.objHas = (hair) => {
+  return hair.hasOwnProperty('cut')
+  && hair.hasOwnProperty('length')
+  && hair.hasOwnProperty('color')
+  && hair.hasOwnProperty('bald');
+
+};
+
 
 
